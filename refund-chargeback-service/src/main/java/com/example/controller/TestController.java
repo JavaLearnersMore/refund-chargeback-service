@@ -15,6 +15,7 @@ public class TestController {
     	System.out.println("Inside controller");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("account_form");
+		System.out.println("Inside controller");
 		return mav;
 		
 	}
