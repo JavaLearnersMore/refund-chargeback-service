@@ -1,0 +1,96 @@
+body {
+    background: black;
+    color: white;
+}
+
+.refund-forms-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+.refund-section {
+    width: 420px;
+    flex: 0 0 420px;
+    box-sizing: border-box;
+}
+
+.refund-form-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    background: #111;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.refund-form-container h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: white;
+}
+
+.refund-form-container label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.refund-form-container input {
+    width: 100%;
+    padding: 9px;
+    box-sizing: border-box;
+    background: #222;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 3px;
+}
+
+.refund-form-container button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.refund-form-container button:hover {
+    background: #0056b3;
+}
+
+.refund-response-message {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 15px;
+    box-sizing: border-box;
+}
+
+.refund-response-message pre {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px;
+    font-size: 12px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    overflow-x: auto;
+    background: #222;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
