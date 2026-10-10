@@ -106,4 +106,34 @@ public class RefundService {
 
         return response;
     }
+    
+
+	@Transactional
+	public RefundResponse approveRefund(String refundRef) {
+	
+	    RefundCase refundCase = refundCaseRepository
+	            .findByRefundRef(refundRef)
+	            .orElseThrow(() ->
+	                    new IllegalArgumentException(
+	                            "Refund not found: " + refundRef));
+
+	    if (refundCase.getStatus() != RefundStatus.PENDING_OPS) {
+	        throw new IllegalStateException(
+	                "Refund is not pending Ops approval. Current status: "
+	                        + refundCase.getStatus());
+	    }
+	
+	    LocalDateTime now = LocalDateTime.now();
+	
+	    // Approve the full requested amount
+	    refundCase.setApprovedAmount(
+	            refundCase.getRequestedAmount());
+	
+	    // Mark the refund completed
+	    refundCase.setStatus(RefundStatus.COMPLETED);
+	
+	    RefundCase saved = refundCaseRepository.save(refundCase);
+	
+	    return buildResponse(saved, now);
+	}
 }

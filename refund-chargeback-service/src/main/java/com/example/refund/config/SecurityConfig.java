@@ -1,3 +1,4 @@
+
 package com.example.refund.config;
 
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,12 @@ public class SecurityConfig {
             .authorizeRequests()
             .antMatchers("/rc/api/v1/refunds")
             .hasAnyRole("MERCHANT", "SERVICE")
+            .antMatchers("/rc/api/v1/chargebacks")
+            .hasAnyRole("MERCHANT", "SERVICE")
+            .antMatchers("/rc/internal/refunds/**")
+            .hasAnyRole("OPS", "ADMIN")
+            .antMatchers("/rc/api/v1/reports/merchant/*/ratio")
+            .hasAnyRole("MERCHANT", "OPS")
             .anyRequest()
             .authenticated()
 
@@ -52,9 +59,23 @@ public class SecurityConfig {
                     .roles("SERVICE")
                     .build();
 
+        UserDetails ops =
+                User.withUsername("ops")
+                    .password(passwordEncoder.encode("ops123"))
+                    .roles("OPS")
+                    .build();
+
+        UserDetails admin =
+                User.withUsername("admin")
+                    .password(passwordEncoder.encode("admin123"))
+                    .roles("ADMIN")
+                    .build();
+
         return new InMemoryUserDetailsManager(
                 merchant,
-                service
+                service,
+                ops,
+                admin
         );
     }
 

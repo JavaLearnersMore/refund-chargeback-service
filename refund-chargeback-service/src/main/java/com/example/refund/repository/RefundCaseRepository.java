@@ -11,4 +11,6 @@ public interface RefundCaseRepository extends JpaRepository<RefundCase, Long> {
     Optional<RefundCase> findByRefundRef(String refundRef);
 
     boolean existsByTxnRefAndMerchantId(String txnRef, Long merchantId);
+    
+    long countByMerchantId(Long merchantId);
 }
